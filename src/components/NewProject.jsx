@@ -15,12 +15,7 @@ export default function NewProject({ onAdd, onCancelAddProject }) {
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
 
-    onAdd({
-      title: enteredTitle,
-      description: enteredDescription,
-      dueDate: enteredDueDate,
-    });
-
+// 1. Validate first
     if (
       enteredTitle.trim() === "" ||
       enteredDescription.trim() === "" ||
@@ -29,6 +24,19 @@ export default function NewProject({ onAdd, onCancelAddProject }) {
       modal.current.open();
       return;
     }
+
+    // 2. Add project
+    onAdd({
+      title: enteredTitle,
+      description: enteredDescription,
+      dueDate: enteredDueDate,
+    });
+
+    // 3. Clear input fields 
+    title.current.value = '';
+    description.current.value = '';
+    dueDate.current.value = '';
+    
   }
 
   return (
