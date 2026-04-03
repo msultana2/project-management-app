@@ -1,13 +1,17 @@
 import { useState } from "react";
 
 export default function NewTask({ handleAddTask }) {
-  const [task, setTask] = useState();
+  const [task, setTask] = useState('');
 
   function handleChange(e) {
     setTask(e.target.value);
   }
 
   function handleClick() {
+    if(task.trim() === '') {
+        alert('Please enter the value!');
+        return;
+    }
     setTask("");
     handleAddTask(task);
   }
